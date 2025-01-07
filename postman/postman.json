@@ -1,0 +1,79 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Verify Influencers API",
+      "description": "API para verificar influenciadores y analizar contenido de salud",
+      "version": "1.0.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+      "/influencers": {
+        "get": {
+          "summary": "Obtener todos los influencers",
+          "responses": {
+            "200": {
+              "description": "Lista de influencers",
+              "schema": { "type": "array", "items": { "$ref": "#/definitions/Influencer" } }
+            }
+          }
+        },
+        "post": {
+          "summary": "Agregar un nuevo influencer",
+          "parameters": [{
+            "in": "body",
+            "name": "body",
+            "schema": { "$ref": "#/definitions/Influencer" }
+          }],
+          "responses": {
+            "201": { "description": "Influencer agregado" }
+          }
+        }
+      },
+      "/claims": {
+        "get": {
+          "summary": "Obtener todas las afirmaciones",
+          "responses": {
+            "200": {
+              "description": "Lista de afirmaciones",
+              "schema": { "type": "array", "items": { "$ref": "#/definitions/Claim" } }
+            }
+          }
+        },
+        "post": {
+          "summary": "Agregar una nueva afirmación",
+          "parameters": [{
+            "in": "body",
+            "name": "body",
+            "schema": { "$ref": "#/definitions/Claim" }
+          }],
+          "responses": {
+            "201": { "description": "Afirmación agregada" }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Influencer": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "followers": { "type": "number" },
+          "trustScore": { "type": "number" }
+        }
+      },
+      "Claim": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "content": { "type": "string" },
+          "category": { "type": "string" },
+          "verificationStatus": { "type": "string" },
+          "confidenceScore": { "type": "number" }
+        }
+      }
+    }
+  }
+  
